@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_4^fyki&_fh=5vm@pe6ounph902%zex0o_+ie05_k=1z2mssm%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [ 'https://sastashopapp101.herokuapp.com','127.0.0.1' ]
 
