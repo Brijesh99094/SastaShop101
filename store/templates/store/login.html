@@ -1,0 +1,35 @@
+{% extends 'store/main.html' %} {% block content %}
+<div class="conatainer">{% include 'store/navbar.html' %}</div>
+<div class="m-3 p-3">
+  <div class="col-lg-4 mx-auto border rounded p-3">
+    <h3>Login</h3>
+    {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+    <form method="POST">
+      {% csrf_token %}
+      <div class="mb-3 form-group">
+        <label for="lastname" class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control form-control-sm"
+          name="email"
+          value="{{ values.email }}"
+          required
+        />
+
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control form-control-sm"
+          name="password"
+          required
+        />
+
+        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

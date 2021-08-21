@@ -1,0 +1,98 @@
+{% extends 'store/main.html' %} {% block content %}
+<div class="conatainer">{% include 'store/navbar.html' %}</div>
+<div class="m-3 p-3">
+  <div class="col-lg-4 mx-auto border rounded p-3">
+    <h3>Create an Account</h3>
+    {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+    <form method="POST">
+      {% csrf_token %}
+      <div class="mb-3 form-group">
+        <label for="firstname" class="form-label">First name</label>
+        <input
+          type="text"
+          class="form-control form-control-sm"
+          name="first_name"
+          value="{{ values.first_name }}"
+          required
+        />
+        <label for="lastname" class="form-label">Last name</label>
+        <input
+          type="text"
+          class="form-control form-control-sm"
+          name="last_name"
+          value="{{ values.last_name }}"
+          required
+        />
+        <label for="phone" class="form-label">Phone</label>
+        <input
+          type="tel"
+          pattern="[0-9]{10}"
+          class="form-control form-control-sm"
+          name="mob_no"
+          value="{{ values.phone }}"
+          required
+        />
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input
+          type="email"
+          class="form-control form-control-sm"
+          name="email"
+          id="usernameField"
+          value="{{ values.email }}"
+          required
+          aria-describedby="emailHelp"
+        /><span id="msg"></span>
+
+        <div id="emailHelp" class="form-text">
+          We'll never share your email with anyone else.
+        </div>
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control form-control-sm"
+          name="password"
+          required
+        />
+        <label for="exampleInputPassword1" class="form-label"
+          >Confirm Password</label
+        >
+        <input
+          type="password"
+          class="form-control form-control-sm"
+          name="password1"
+          required
+        />
+        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  $(document).ready(function () {
+    $("#usernameField").keyup(function () {
+      var usernameField = $("#usernameField").val();
+      $.ajax({
+        method: "POST",
+        url: "/validated_username",
+        data: JSON.stringify({
+          email: usernameField,
+        }),
+        dataType: "json",
+      })
+        .done(function (response) {
+          el1 = document.getElementById("msg").innerHTML =
+            "<p  style='color:green'; >" + response["username_valid"] + "</p>";
+
+          // alert("Office Saved")
+        })
+        .fail(function (response) {
+          document.getElementById("msg").innerHTML =
+            "<p style='color:red';>" + response["username_valid"] + "</p>";
+          console.log(response);
+        });
+    });
+  });
+</script>
+{% endblock %}
