@@ -163,7 +163,6 @@
               <h5 class="card-title">{{ product.name }}</h5>
               <p class="card-text">{{ product.description }}</p>
               <h3 class="card-title">{{ product.price|currency }}</h3>
-              {{ product | is_in_cart:request.session.cart }}
             </div>
             <div class="card-footer p-0 row no-gutters">
               {% if product|is_in_cart:request.session.cart %}
