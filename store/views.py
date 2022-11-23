@@ -185,7 +185,11 @@ class Checkout(View):
             od1.save()
         request.session['cart'] = {}
         print( request.session['cart'])
-        return redirect('cart')
+        return redirect('order_placed')
+
+    
+def order_placed(request):
+    return render(request,"store/order_placed.html")
 
 
 class OrderView(View):
