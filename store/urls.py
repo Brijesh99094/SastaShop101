@@ -9,5 +9,7 @@ urlpatterns =[
     path('logout',logout,name='logout'),
     path('cart',auth_middleware(CartView.as_view()),name="cart"),
     path('check-out',Checkout.as_view(),name="check-out"),
-    path('validated_username', validated_username,name='validated-username')
+    path('validated_username', validated_username,name='validated-username'),
+    
+    path('order_placed',order_placed,name="order_placed")
 ]
