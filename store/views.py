@@ -169,7 +169,7 @@ def logout(request):
 
 class Checkout(View):
     
-    def get(request):
+    def get(self,request):
         context={}
         return render(request,"store/checkout.html",context)
 
