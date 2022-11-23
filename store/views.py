@@ -168,6 +168,11 @@ def logout(request):
     return redirect('index')
 
 class Checkout(View):
+    
+    def get(request):
+        context={}
+        return render(request,"store/checkout.html",context)
+
     def post(self,request):
         address = request.POST.get('address')
         customer = request.session.get('customer_id') 
